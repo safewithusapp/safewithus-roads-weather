@@ -1,0 +1,110 @@
+name: 🗺️ تحديث البيانات
+
+# ============================================================================
+# رافقتكم السلامة — تحديث بيانات الطرق والطقس 
+#
+# 🧠 plan  ← يختار شغل الحين بالترتيب المخطط (السعودية ← الخليج ← أوروبا ← الإنجليزية ← الباقي)
+# ⚙️ work  ← لين ٦ مهام مع بعض (كل مهمة جهاز لحاله):
+#            🗺️ osm      الطرق والطبقات من Geofabrik (OpenStreetMap)
+#            🌫️ weather  ضباب + رطوبة من مخزن Open-Meteo المفتوح (ECMWF IFS)
+#            🌪️ dust     غبار (CAMS) — dustgrid يحسب العالم كله مرة وحدة
+#            ⛰️ slopes   منحدرات من خريطة ارتفاعات Copernicus
+# 💾 save  ← يحفظ النتائج في data/ و state.json و progress.md، ويشغّل الدورة اللي بعدها لحاله
+#
+# 🔐 ولا مفتاح ولا سر هنا — كل المصادر مفتوحة ومجانية.
+# 🛑 للإيقاف: Actions ← 🗺️ تحديث البيانات ← ⋯ ← Disable workflow
+# ============================================================================
+
+on:
+  schedule:
+    - cron: "41 * * * *" # كل ساعة، احتياط لو انقطعت السلسلة
+  workflow_dispatch:
+
+permissions:
+  contents: write # 💾 يحفظ البيانات
+  actions: write # 🔁 يشغّل الدورة اللي بعدها
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    name: 🧠 وش شغل الحين؟
+    runs-on: ubuntu-latest
+    outputs:
+      tasks: ${{ steps.p.outputs.tasks }}
+      any: ${{ steps.p.outputs.any }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: p
+        run: node scripts/conductor.mjs plan >> "$GITHUB_OUTPUT"
+
+  work:
+    name: ${{ matrix.task.cc }} · ${{ matrix.task.job }}
+    needs: plan
+    if: needs.plan.outputs.any == 'yes'
+    runs-on: ubuntu-latest
+    timeout-minutes: 345
+    strategy:
+      fail-fast: false
+      matrix:
+        task: ${{ fromJSON(needs.plan.outputs.tasks) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🧰 أدوات الطرق
+        if: matrix.task.job == 'osm'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq osmium-tool
+      - uses: actions/setup-python@v5
+        if: matrix.task.job != 'osm'
+        with:
+          python-version: "3.12"
+      - name: 🧰 أدوات الطقس والمنحدرات
+        if: matrix.task.job != 'osm'
+        run: pip install -q omfiles fsspec s3fs numpy rasterio
+      - name: ⚙️ الشغل
+        env:
+          WORK_MINUTES: "320"
+        run: node scripts/conductor.mjs work "${{ matrix.task.cc }}" "${{ matrix.task.job }}"
+      - name: 📦 النتيجة
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.task.cc }}-${{ matrix.task.job }}
+          path: out/
+          retention-days: 3
+          if-no-files-found: ignore
+
+  save:
+    name: 💾 حفظ + 🔁 الدورة الجاية
+    needs: [plan, work]
+    if: ${{ !cancelled() && needs.plan.outputs.any == 'yes' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        continue-on-error: true # كل المهام طاحت بدون ملفات ← نسجّلها فشل ونكمل
+        with:
+          path: results
+          merge-multiple: true
+      - id: s
+        env:
+          TASKS: ${{ needs.plan.outputs.tasks }}
+        run: node scripts/conductor.mjs save >> "$GITHUB_OUTPUT"
+      - name: 💾 حفظ
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data cache state.json progress.md
+          if git diff --cached --quiet; then echo "ما فيه جديد"; exit 0; fi
+          git commit -q -m "🗺️ $(grep -o '✅\|⏳\|❌' progress.md | sort | uniq -c | tr '\n' ' ')"
+          for i in 1 2 3; do
+            git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0
+            sleep 10
+          done
+          exit 1
+      - name: 🔁 الدورة الجاية
+        if: steps.s.outputs.more == 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run update.yml --ref main
