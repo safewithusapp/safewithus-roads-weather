@@ -2,7 +2,13 @@
   "done": {
     "GB:osm": "2026-11-27",
     "SA:osm": "2026-11-27",
-    "WORLD:dustgrid": "2026-11-27"
+    "WORLD:dustgrid": "2026-11-27",
+    "AE:osm": "2026-11-27",
+    "GB:slopes": "2026-11-27",
+    "GB:weather": "2026-11-27",
+    "SA:dust": "2026-11-27",
+    "SA:slopes": "2026-11-27",
+    "SA:weather": "2026-11-27"
   },
   "fails": {}
 }
