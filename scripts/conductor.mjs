@@ -29,6 +29,8 @@ function due(cc, job, now = Date.now()) {
   if (f && f.count >= 3 && now - Date.parse(f.last) < 7 * 86_400_000) return false; // resting
   const d = state.done[k];
   if (!d) return true;
+  // 🔁 A job whose version went up in plan.json is done again (new layers in an old job).
+  if ((state.ver?.[k] ?? 1) < (PLAN.jobVersion?.[job] ?? 1)) return true;
   return (now - Date.parse(d)) / 86_400_000 >= (PLAN.refreshDays[job] ?? Infinity);
 }
 
@@ -63,7 +65,7 @@ function outputsOf(cc, job) {
   const d = `data/${cc.toLowerCase()}`;
   if (job === "osm") return LAYER_FILES.map((f) => `${d}/${f}.ts`);
   if (job === "weather") return [`${d}/weatherHistory.ts`, `${d}/weatherExtras.ts`, `cache/${cc.toLowerCase()}-weather.json`];
-  if (job === "dust") return [`${d}/dustHistory.ts`];
+  if (job === "dust") return [`${d}/dustHistory.ts`, `${d}/dustLevels.ts`];
   if (job === "slopes") return [`${d}/steepSlopes.ts`];
   if (job === "dustgrid") return ["cache/dust-grid.npz"];
   return [];
@@ -106,7 +108,11 @@ function save() {
   for (const t of planned) if (!statuses.some((s) => s.cc === t.cc && s.job === t.job)) statuses.push({ ...t, status: "FAILED" });
   for (const s of statuses) {
     const k = key(s.cc, s.job);
-    if (s.status === "DONE") { state.done[k] = today; delete state.fails[k]; }
+    if (s.status === "DONE") {
+      state.done[k] = today;
+      delete state.fails[k];
+      if ((PLAN.jobVersion?.[s.job] ?? 1) > 1) (state.ver ??= {})[k] = PLAN.jobVersion[s.job];
+    }
     else if (s.status === "FAILED") state.fails[k] = { count: (state.fails[k]?.count ?? 0) + 1, last: today };
   }
   writeFileSync(STATE_FILE, JSON.stringify(state, null, 2) + "\n");
