@@ -427,7 +427,17 @@ async function main() {
 mkdirSync(OUT, { recursive: true });
 mkdirSync(TMP, { recursive: true });
 // ── 1. Which Geofabrik files hold this country? ───────────────────────────
-const index = await (await fetch("https://download.geofabrik.de/index-v1-nogeom.json", { headers: { "user-agent": UA } })).json();
+// Geofabrik refuses connections when many runners ask at once — wait and try again.
+let index = null;
+for (let t = 1; t <= 6 && !index; t++) {
+  try {
+    index = await (await fetch("https://download.geofabrik.de/index-v1-nogeom.json", { headers: { "user-agent": UA } })).json();
+  } catch (e) {
+    console.warn(`⚠️ Geofabrik index: ${e.cause?.code ?? e.message} (try ${t})`);
+    if (t === 6) { console.log("STATUS=FAILED"); process.exit(1); }
+    await new Promise((r) => setTimeout(r, 60_000 * t));
+  }
+}
 const features = index.features.map((f) => f.properties);
 // Geofabrik keeps Saudi Arabia inside its "GCC States" file without listing SA there.
 const HOME = { SA: "gcc-states" };
