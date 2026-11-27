@@ -32,13 +32,23 @@ function due(cc, job, now = Date.now()) {
   return (now - Date.parse(d)) / 86_400_000 >= (PLAN.refreshDays[job] ?? Infinity);
 }
 
+// 🙏 Geofabrik is a free server: at most PLAN.maxOsm downloads at once, and
+// never two countries that live in the same file (GCC States …) together.
+const sharedGroup = (cc) => (PLAN.sharedFiles ?? []).findIndex((g) => g.includes(cc));
+function osmAllowed(tasks, cc) {
+  const osm = tasks.filter((t) => t.job === "osm");
+  if (osm.length >= (PLAN.maxOsm ?? 2)) return false;
+  const g = sharedGroup(cc);
+  return g < 0 || !osm.some((t) => sharedGroup(t.cc) === g);
+}
+
 export function nextTasks(limit = PLAN.parallel ?? 6) {
   const tasks = [];
   if (due("WORLD", "dustgrid")) tasks.push({ cc: "WORLD", job: "dustgrid" });
   const gridBusy = tasks.length > 0;
   for (const cc of COUNTRIES) {
     if (tasks.length >= limit) break;
-    if (due(cc, "osm")) { tasks.push({ cc, job: "osm" }); continue; } // its other jobs need the roads first
+    if (due(cc, "osm")) { if (osmAllowed(tasks, cc)) tasks.push({ cc, job: "osm" }); continue; } // its other jobs need the roads first
     if (!state.done[key(cc, "osm")]) continue; // osm resting after failures
     for (const job of ["weather", "slopes", "dust"]) {
       if (tasks.length >= limit) break;
