@@ -429,9 +429,16 @@ mkdirSync(TMP, { recursive: true });
 // ── 1. Which Geofabrik files hold this country? ───────────────────────────
 const index = await (await fetch("https://download.geofabrik.de/index-v1-nogeom.json", { headers: { "user-agent": UA } })).json();
 const features = index.features.map((f) => f.properties);
+// Geofabrik keeps Saudi Arabia inside its "GCC States" file without listing SA there.
+const HOME = { SA: "gcc-states" };
 const mine = features
-  .filter((p) => (p["iso3166-1:alpha2"] ?? []).includes(CC) && p.urls?.pbf)
+  .filter((p) => ((p["iso3166-1:alpha2"] ?? []).includes(CC) || p.id === HOME[CC]) && p.urls?.pbf)
   .sort((a, b) => (a["iso3166-1:alpha2"].length - b["iso3166-1:alpha2"].length) || (b.id.length - a.id.length));
+if (mine.length === 0 && STRICT) {
+  console.error("::error::No Geofabrik extract found for SA — refusing to write empty layers.");
+  console.log("STATUS=FAILED");
+  process.exit(1);
+}
 if (mine.length === 0) {
   console.log(`No Geofabrik extract lists ${CC} — nothing to do.`);
   writeEmpty();
