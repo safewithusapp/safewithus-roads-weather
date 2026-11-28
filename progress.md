@@ -14,9 +14,9 @@
 
 ## 🕐 آخر تشغيل
 
-- ✅ DK · dust
-- ✅ FI · dust
-- ✅ FI · slopes
-- ✅ FI · weather
-- ✅ NO · dust
-- ✅ SE · dust
+- ✅ CZ · dust
+- ✅ HU · dust
+- ✅ IS · dust
+- ✅ PL · dust
+- ✅ RO · dust
+- ✅ SK · dust
