@@ -421,7 +421,8 @@
     "SV:weather": "2026-11-28",
     "FI:dust": "2026-11-28",
     "FI:slopes": "2026-11-28",
-    "FI:weather": "2026-11-28"
+    "FI:weather": "2026-11-28",
+    "CO:osm": "2026-11-28"
   },
   "fails": {
     "US:osm": {
@@ -530,6 +531,11 @@
     "AZ:dust": 2,
     "BR:dust": 2,
     "GE:dust": 2,
-    "MX:dust": 2
+    "MX:dust": 2,
+    "AR:dust": 2,
+    "CL:dust": 2,
+    "EC:dust": 2,
+    "PE:dust": 2,
+    "VE:dust": 2
   }
 }
