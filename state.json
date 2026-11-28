@@ -429,6 +429,10 @@
       "last": "2026-11-28"
     },
     "PS:osm": {
+      "count": 2,
+      "last": "2026-11-28"
+    },
+    "MY:osm": {
       "count": 1,
       "last": "2026-11-28"
     }
@@ -513,6 +517,10 @@
     "IR:dust": 2,
     "LK:dust": 2,
     "NP:dust": 2,
-    "SY:dust": 2
+    "SY:dust": 2,
+    "CN:dust": 2,
+    "ID:dust": 2,
+    "JP:dust": 2,
+    "KR:dust": 2
   }
 }
