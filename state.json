@@ -75,15 +75,15 @@
     "CH:weather": "2026-11-27",
     "DK:osm": "2026-11-27",
     "NO:osm": "2026-11-27",
-    "DK:dust": "2026-11-27",
+    "DK:dust": "2026-11-28",
     "DK:slopes": "2026-11-27",
     "DK:weather": "2026-11-27",
-    "NO:dust": "2026-11-27",
+    "NO:dust": "2026-11-28",
     "NO:slopes": "2026-11-27",
     "NO:weather": "2026-11-27",
     "SE:osm": "2026-11-27",
     "IS:osm": "2026-11-27",
-    "SE:dust": "2026-11-27",
+    "SE:dust": "2026-11-28",
     "SE:slopes": "2026-11-27",
     "SE:weather": "2026-11-27",
     "IS:dust": "2026-11-27",
@@ -418,7 +418,10 @@
     "FI:osm": "2026-11-28",
     "NI:weather": "2026-11-28",
     "SV:slopes": "2026-11-28",
-    "SV:weather": "2026-11-28"
+    "SV:weather": "2026-11-28",
+    "FI:dust": "2026-11-28",
+    "FI:slopes": "2026-11-28",
+    "FI:weather": "2026-11-28"
   },
   "fails": {
     "US:osm": {
@@ -445,6 +448,10 @@
     "CH:dust": 2,
     "IT:dust": 2,
     "LU:dust": 2,
-    "NL:dust": 2
+    "NL:dust": 2,
+    "DK:dust": 2,
+    "FI:dust": 2,
+    "NO:dust": 2,
+    "SE:dust": 2
   }
 }
