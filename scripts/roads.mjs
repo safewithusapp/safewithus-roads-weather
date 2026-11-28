@@ -78,6 +78,7 @@ function cutCountry(pbf) {
   sh("osmium", ["export", bnd, "-f", "geojsonseq", "--geometry-types=polygon", "-o", seq, "--overwrite"]);
   const text = execFileSync("cat", [seq], { maxBuffer: 2 * 1024 ** 3 }).toString("utf8");
   let border = null;
+  const others = [];
   for (const line of text.split("\n")) {
     const s = line.replace(/^\x1e/, "").trim();
     if (!s) continue;
@@ -85,10 +86,28 @@ function cutCountry(pbf) {
     try { f = JSON.parse(s); } catch { continue; }
     const p = f.properties ?? {};
     if (String(p.admin_level) !== "2") continue;
-    if ((p["ISO3166-1"] ?? p["ISO3166-1:alpha2"]) === CC) { border = f; break; }
+    const iso = p["ISO3166-1"] ?? p["ISO3166-1:alpha2"];
+    if (iso === CC && !border) border = f;
+    else if (iso && iso !== CC) others.push(f);
   }
-  if (!border) throw new Error(`no admin_level=2 border for ${CC} in the shared extract`);
-  writeFileSync(`${TMP}/border.geojson`, JSON.stringify({ type: "Feature", properties: {}, geometry: border.geometry }));
+  let geometry = border?.geometry;
+  if (!geometry) {
+    // The country's own border is often clipped by the extract (it reaches far
+    // out to sea: Malaysia, Palestine…) and cannot be rebuilt. Then keep
+    // everything in the extract EXCEPT the neighbours whose borders are whole
+    // (Singapore, Brunei / Israel): the world with their outlines as holes.
+    if (others.length === 0) throw new Error(`no admin_level=2 border for ${CC} nor its neighbours in the shared extract`);
+    const holes = [];
+    for (const o of others) {
+      const g = o.geometry;
+      const polys = g.type === "Polygon" ? [g.coordinates] : g.type === "MultiPolygon" ? g.coordinates : [];
+      for (const poly of polys) if (poly[0]) holes.push(poly[0]);
+    }
+    const world = [[-180, -90], [180, -90], [180, 90], [-180, 90], [-180, -90]];
+    geometry = { type: "Polygon", coordinates: [world, ...holes] };
+    console.log(`✂️ ${CC}: own border not in the extract — keeping all but ${others.length} neighbour border(s)`);
+  }
+  writeFileSync(`${TMP}/border.geojson`, JSON.stringify({ type: "Feature", properties: {}, geometry }));
   const cut = `${TMP}/cut.pbf`;
   sh("osmium", ["extract", "-p", `${TMP}/border.geojson`, pbf, "-o", cut, "--overwrite"]);
   rmSync(bnd, { force: true });
@@ -466,7 +485,11 @@ async function sizeOf(url) {
 /** A too-big file is replaced by its child regions (US → states, DE → Länder …). */
 async function parts(p) {
   const size = await sizeOf(p.urls.pbf);
-  const kids = features.filter((k) => k.parent === p.id && k.urls?.pbf);
+  const allKids = features.filter((k) => k.parent === p.id && k.urls?.pbf);
+  // Geofabrik lists the US both as groups (us-midwest…) and as states (us/ohio…):
+  // when real sub-files ("<parent>/…") exist, use only those — no double counting.
+  const nested = allKids.filter((k) => k.id.startsWith(`${p.id}/`));
+  const kids = nested.length ? nested : allKids;
   if (size <= MAX_PART_BYTES || kids.length === 0) return [{ id: p.id, url: p.urls.pbf, size }];
   const out = [];
   for (const k of kids) out.push(...(await parts(k)));

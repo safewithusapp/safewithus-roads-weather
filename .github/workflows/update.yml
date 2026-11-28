@@ -65,6 +65,8 @@ jobs:
       - name: ⚙️ الشغل
         env:
           WORK_MINUTES: "320"
+          # Big countries (the US: 50 states) need more than Node's default ~4 GB heap.
+          NODE_OPTIONS: --max-old-space-size=12288
         run: node scripts/conductor.mjs work "${{ matrix.task.cc }}" "${{ matrix.task.job }}"
       - name: 📦 النتيجة
         if: ${{ !cancelled() }}

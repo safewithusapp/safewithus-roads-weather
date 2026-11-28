@@ -456,20 +456,7 @@
     "AO:osm": "2026-11-28",
     "MZ:osm": "2026-11-28"
   },
-  "fails": {
-    "US:osm": {
-      "count": 3,
-      "last": "2026-11-28"
-    },
-    "PS:osm": {
-      "count": 3,
-      "last": "2026-11-28"
-    },
-    "MY:osm": {
-      "count": 3,
-      "last": "2026-11-28"
-    }
-  },
+  "fails": {},
   "ver": {
     "WORLD:dustgrid": 2,
     "AE:dust": 2,
