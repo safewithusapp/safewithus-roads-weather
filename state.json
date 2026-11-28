@@ -482,7 +482,13 @@
     "SO:osm": "2026-11-28",
     "TD:dust": "2026-11-28",
     "TD:slopes": "2026-11-28",
-    "TD:weather": "2026-11-28"
+    "TD:weather": "2026-11-28",
+    "ML:dust": "2026-11-28",
+    "ML:slopes": "2026-11-28",
+    "ML:weather": "2026-11-28",
+    "SO:dust": "2026-11-28",
+    "SO:slopes": "2026-11-28",
+    "SO:weather": "2026-11-28"
   },
   "fails": {},
   "ver": {
@@ -606,6 +612,8 @@
     "US:dust": 2,
     "MY:dust": 2,
     "NE:dust": 2,
-    "TD:dust": 2
+    "TD:dust": 2,
+    "ML:dust": 2,
+    "SO:dust": 2
   }
 }
