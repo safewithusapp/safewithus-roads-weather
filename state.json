@@ -493,7 +493,10 @@
     "DJ:dust": "2026-11-28",
     "DJ:slopes": "2026-11-28",
     "DJ:weather": "2026-11-28",
-    "ER:osm": "2026-11-28"
+    "ER:osm": "2026-11-28",
+    "ER:dust": "2026-11-28",
+    "ER:slopes": "2026-11-28",
+    "ER:weather": "2026-11-28"
   },
   "fails": {},
   "ver": {
@@ -620,6 +623,7 @@
     "TD:dust": 2,
     "ML:dust": 2,
     "SO:dust": 2,
-    "DJ:dust": 2
+    "DJ:dust": 2,
+    "ER:dust": 2
   }
 }
