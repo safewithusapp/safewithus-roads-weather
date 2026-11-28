@@ -14,9 +14,9 @@
 
 ## 🕐 آخر تشغيل
 
-- ✅ FI · osm
-- ✅ NI · weather
-- ✅ SV · slopes
-- ✅ SV · weather
-- ❌ US · osm
-- ✅ WORLD · dustgrid
+- ✅ AE · dust
+- ✅ BH · dust
+- ✅ KW · dust
+- ✅ OM · dust
+- ✅ QA · dust
+- ✅ SA · dust
