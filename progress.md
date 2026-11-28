@@ -14,9 +14,9 @@
 
 ## 🕐 آخر تشغيل
 
-- ✅ DE · dust
-- ✅ ES · dust
-- ✅ FR · dust
-- ✅ GB · dust
-- ✅ IE · dust
-- ✅ PT · dust
+- ✅ AT · dust
+- ✅ BE · dust
+- ✅ CH · dust
+- ✅ IT · dust
+- ✅ LU · dust
+- ✅ NL · dust
