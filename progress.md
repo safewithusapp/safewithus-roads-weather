@@ -14,12 +14,12 @@
 
 ## 🕐 آخر تشغيل
 
-- ✅ GH · dust
-- ✅ KE · dust
-- ✅ NG · dust
-- ✅ SG · dust
-- ✅ UG · dust
-- ✅ ZA · dust
+- ✅ EG · dust
+- ✅ JM · dust
+- ✅ RW · dust
+- ✅ TZ · dust
+- ✅ ZM · dust
+- ✅ ZW · dust
 
 ## 😴 مهام ترتاح أسبوع بعد ٣ محاولات
 
