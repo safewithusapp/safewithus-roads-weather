@@ -14,9 +14,9 @@
 
 ## 🕐 آخر تشغيل
 
-- ✅ AL · dust
-- ✅ LT · dust
-- ✅ MD · dust
-- ✅ ME · dust
-- ✅ MK · dust
-- ✅ UA · dust
+- ✅ CA · dust
+- ✅ CY · dust
+- ✅ EE · dust
+- ✅ LV · dust
+- ✅ MT · dust
+- ❌ US · osm
