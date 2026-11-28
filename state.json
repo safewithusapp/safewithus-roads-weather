@@ -470,7 +470,13 @@
     "US:slopes": "2026-11-28",
     "US:weather": "2026-11-28",
     "MY:osm": "2026-11-28",
-    "NE:osm": "2026-11-28"
+    "NE:osm": "2026-11-28",
+    "MY:dust": "2026-11-28",
+    "MY:slopes": "2026-11-28",
+    "MY:weather": "2026-11-28",
+    "NE:dust": "2026-11-28",
+    "NE:slopes": "2026-11-28",
+    "NE:weather": "2026-11-28"
   },
   "fails": {},
   "ver": {
@@ -591,6 +597,8 @@
     "AO:dust": 2,
     "MZ:dust": 2,
     "PS:dust": 2,
-    "US:dust": 2
+    "US:dust": 2,
+    "MY:dust": 2,
+    "NE:dust": 2
   }
 }
