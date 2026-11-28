@@ -14,9 +14,9 @@
 
 ## 🕐 آخر تشغيل
 
-- ✅ CZ · dust
-- ✅ HU · dust
-- ✅ IS · dust
-- ✅ PL · dust
-- ✅ RO · dust
-- ✅ SK · dust
+- ✅ BA · dust
+- ✅ BG · dust
+- ✅ GR · dust
+- ✅ HR · dust
+- ✅ RS · dust
+- ✅ SI · dust
