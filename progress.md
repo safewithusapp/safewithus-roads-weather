@@ -14,9 +14,13 @@
 
 ## 🕐 آخر تشغيل
 
-- ✅ CA · dust
-- ✅ CY · dust
-- ✅ EE · dust
-- ✅ LV · dust
-- ✅ MT · dust
+- ✅ AU · dust
+- ✅ IN · dust
+- ✅ NZ · dust
+- ✅ PH · dust
+- ✅ PK · dust
 - ❌ US · osm
+
+## 😴 مهام ترتاح أسبوع بعد ٣ محاولات
+
+- US:osm
