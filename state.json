@@ -294,7 +294,7 @@
     "MR:dust": "2026-11-28",
     "MR:slopes": "2026-11-27",
     "MR:weather": "2026-11-27",
-    "SY:dust": "2026-11-27",
+    "SY:dust": "2026-11-28",
     "SY:slopes": "2026-11-27",
     "SY:weather": "2026-11-27",
     "IR:osm": "2026-11-27",
@@ -427,6 +427,10 @@
     "US:osm": {
       "count": 3,
       "last": "2026-11-28"
+    },
+    "PS:osm": {
+      "count": 1,
+      "last": "2026-11-28"
     }
   },
   "ver": {
@@ -504,6 +508,11 @@
     "MR:dust": 2,
     "SD:dust": 2,
     "TR:dust": 2,
-    "YE:dust": 2
+    "YE:dust": 2,
+    "AF:dust": 2,
+    "IR:dust": 2,
+    "LK:dust": 2,
+    "NP:dust": 2,
+    "SY:dust": 2
   }
 }

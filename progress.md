@@ -14,12 +14,12 @@
 
 ## 🕐 آخر تشغيل
 
-- ✅ LB · dust
-- ✅ LY · dust
-- ✅ MR · dust
-- ✅ SD · dust
-- ✅ TR · dust
-- ✅ YE · dust
+- ✅ AF · dust
+- ✅ IR · dust
+- ✅ LK · dust
+- ✅ NP · dust
+- ❌ PS · osm
+- ✅ SY · dust
 
 ## 😴 مهام ترتاح أسبوع بعد ٣ محاولات
 
