@@ -61,7 +61,7 @@ const FILTERS = [
 async function download(url, file) {
   for (let t = 1; t <= 3; t++) {
     try {
-      sh("curl", ["-fsSL", "--retry", "3", "-A", UA, "-o", file, url]);
+      sh("curl", ["-fsSL", "--retry", "5", "--retry-connrefused", "--retry-delay", "20", "-A", UA, "-o", file, url]);
       return;
     } catch (e) {
       if (t === 3) throw e;
@@ -434,7 +434,8 @@ for (let t = 1; t <= 6 && !index; t++) {
     index = await (await fetch("https://download.geofabrik.de/index-v1-nogeom.json", { headers: { "user-agent": UA } })).json();
   } catch (e) {
     console.warn(`⚠️ Geofabrik index: ${e.cause?.code ?? e.message} (try ${t})`);
-    if (t === 6) { console.log("STATUS=FAILED"); process.exit(1); }
+    // Not our fault: this runner's address is refused — try again next round on another runner.
+    if (t === 6) { console.log("STATUS=PARTIAL"); process.exit(0); }
     await new Promise((r) => setTimeout(r, 60_000 * t));
   }
 }
@@ -482,7 +483,13 @@ for (let i = 0; i < files.length; i++) {
   const f = files[i];
   const pbf = `${TMP}/part.pbf`;
   console.log(`⬇️ ${f.id}`);
-  await download(f.url, pbf);
+  try {
+    await download(f.url, pbf);
+  } catch {
+    console.warn(`⚠️ ${f.id}: Geofabrik refused the download — the next round tries again on another runner.`);
+    console.log("STATUS=PARTIAL");
+    process.exit(0);
+  }
   const src = shared ? cutCountry(pbf) : pbf;
   const opl = toOpl(src, i);
   rmSync(pbf, { force: true });
