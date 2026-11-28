@@ -14,13 +14,14 @@
 
 ## 🕐 آخر تشغيل
 
-- ✅ CN · dust
-- ✅ ID · dust
-- ✅ JP · dust
-- ✅ KR · dust
+- ✅ KZ · dust
 - ❌ MY · osm
 - ❌ PS · osm
+- ✅ TH · dust
+- ✅ UZ · dust
+- ✅ VN · dust
 
 ## 😴 مهام ترتاح أسبوع بعد ٣ محاولات
 
 - US:osm
+- PS:osm
