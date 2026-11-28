@@ -14,12 +14,12 @@
 
 ## 🕐 آخر تشغيل
 
-- ✅ BD · dust
-- ✅ DZ · dust
-- ✅ IQ · dust
-- ✅ JO · dust
-- ✅ MA · dust
-- ✅ TN · dust
+- ✅ LB · dust
+- ✅ LY · dust
+- ✅ MR · dust
+- ✅ SD · dust
+- ✅ TR · dust
+- ✅ YE · dust
 
 ## 😴 مهام ترتاح أسبوع بعد ٣ محاولات
 
