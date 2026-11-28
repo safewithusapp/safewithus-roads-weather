@@ -2,7 +2,7 @@
   "done": {
     "GB:osm": "2026-11-27",
     "SA:osm": "2026-11-27",
-    "WORLD:dustgrid": "2026-11-27",
+    "WORLD:dustgrid": "2026-11-28",
     "AE:osm": "2026-11-27",
     "GB:slopes": "2026-11-27",
     "GB:weather": "2026-11-27",
@@ -414,7 +414,19 @@
     "HN:slopes": "2026-11-28",
     "HN:weather": "2026-11-28",
     "NI:osm": "2026-11-28",
-    "SV:osm": "2026-11-28"
+    "SV:osm": "2026-11-28",
+    "FI:osm": "2026-11-28",
+    "NI:weather": "2026-11-28",
+    "SV:slopes": "2026-11-28",
+    "SV:weather": "2026-11-28"
   },
-  "fails": {}
+  "fails": {
+    "US:osm": {
+      "count": 1,
+      "last": "2026-11-28"
+    }
+  },
+  "ver": {
+    "WORLD:dustgrid": 2
+  }
 }
