@@ -14,12 +14,12 @@
 
 ## 🕐 آخر تشغيل
 
-- ✅ AU · dust
-- ✅ IN · dust
-- ✅ NZ · dust
-- ✅ PH · dust
-- ✅ PK · dust
-- ❌ US · osm
+- ✅ GH · dust
+- ✅ KE · dust
+- ✅ NG · dust
+- ✅ SG · dust
+- ✅ UG · dust
+- ✅ ZA · dust
 
 ## 😴 مهام ترتاح أسبوع بعد ٣ محاولات
 
