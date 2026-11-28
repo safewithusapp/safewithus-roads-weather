@@ -14,9 +14,9 @@
 
 ## 🕐 آخر تشغيل
 
-- ✅ BA · dust
-- ✅ BG · dust
-- ✅ GR · dust
-- ✅ HR · dust
-- ✅ RS · dust
-- ✅ SI · dust
+- ✅ AL · dust
+- ✅ LT · dust
+- ✅ MD · dust
+- ✅ ME · dust
+- ✅ MK · dust
+- ✅ UA · dust
