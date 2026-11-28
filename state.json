@@ -414,26 +414,5 @@
     "HN:slopes": "2026-11-28",
     "HN:weather": "2026-11-28"
   },
-  "fails": {
-    "FI:osm": {
-      "count": 3,
-      "last": "2026-11-27"
-    },
-    "US:osm": {
-      "count": 3,
-      "last": "2026-11-27"
-    },
-    "PS:osm": {
-      "count": 3,
-      "last": "2026-11-28"
-    },
-    "MY:osm": {
-      "count": 3,
-      "last": "2026-11-28"
-    },
-    "CO:osm": {
-      "count": 3,
-      "last": "2026-11-28"
-    }
-  }
+  "fails": {}
 }
