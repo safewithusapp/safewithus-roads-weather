@@ -14,14 +14,15 @@
 
 ## 🕐 آخر تشغيل
 
-- ✅ KZ · dust
+- ✅ AM · dust
+- ✅ AZ · dust
+- ✅ BR · dust
+- ✅ GE · dust
+- ✅ MX · dust
 - ❌ MY · osm
-- ❌ PS · osm
-- ✅ TH · dust
-- ✅ UZ · dust
-- ✅ VN · dust
 
 ## 😴 مهام ترتاح أسبوع بعد ٣ محاولات
 
 - US:osm
 - PS:osm
+- MY:osm

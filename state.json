@@ -433,7 +433,7 @@
       "last": "2026-11-28"
     },
     "MY:osm": {
-      "count": 2,
+      "count": 3,
       "last": "2026-11-28"
     }
   },
@@ -525,6 +525,11 @@
     "KZ:dust": 2,
     "TH:dust": 2,
     "UZ:dust": 2,
-    "VN:dust": 2
+    "VN:dust": 2,
+    "AM:dust": 2,
+    "AZ:dust": 2,
+    "BR:dust": 2,
+    "GE:dust": 2,
+    "MX:dust": 2
   }
 }
