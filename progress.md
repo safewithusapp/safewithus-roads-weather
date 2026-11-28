@@ -14,9 +14,9 @@
 
 ## 🕐 آخر تشغيل
 
-- ✅ AE · dust
-- ✅ BH · dust
-- ✅ KW · dust
-- ✅ OM · dust
-- ✅ QA · dust
-- ✅ SA · dust
+- ✅ DE · dust
+- ✅ ES · dust
+- ✅ FR · dust
+- ✅ GB · dust
+- ✅ IE · dust
+- ✅ PT · dust
