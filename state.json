@@ -454,7 +454,13 @@
     "CM:slopes": "2026-11-28",
     "CM:weather": "2026-11-28",
     "AO:osm": "2026-11-28",
-    "MZ:osm": "2026-11-28"
+    "MZ:osm": "2026-11-28",
+    "AO:dust": "2026-11-28",
+    "AO:slopes": "2026-11-28",
+    "AO:weather": "2026-11-28",
+    "MZ:dust": "2026-11-28",
+    "MZ:slopes": "2026-11-28",
+    "MZ:weather": "2026-11-28"
   },
   "fails": {},
   "ver": {
@@ -571,6 +577,8 @@
     "ET:dust": 2,
     "SN:dust": 2,
     "CI:dust": 2,
-    "CM:dust": 2
+    "CM:dust": 2,
+    "AO:dust": 2,
+    "MZ:dust": 2
   }
 }
