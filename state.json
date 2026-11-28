@@ -430,7 +430,13 @@
     "CU:osm": "2026-11-28",
     "DO:osm": "2026-11-28",
     "NI:dust": "2026-11-28",
-    "NI:slopes": "2026-11-28"
+    "NI:slopes": "2026-11-28",
+    "CU:dust": "2026-11-28",
+    "CU:slopes": "2026-11-28",
+    "CU:weather": "2026-11-28",
+    "DO:dust": "2026-11-28",
+    "DO:slopes": "2026-11-28",
+    "DO:weather": "2026-11-28"
   },
   "fails": {
     "US:osm": {
@@ -554,6 +560,8 @@
     "HN:dust": 2,
     "PA:dust": 2,
     "SV:dust": 2,
-    "NI:dust": 2
+    "NI:dust": 2,
+    "CU:dust": 2,
+    "DO:dust": 2
   }
 }
